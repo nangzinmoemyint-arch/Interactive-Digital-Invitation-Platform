@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Event Information - InviteMe</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            💌 InviteMe
+        </div>
+
+        <div class="nav-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- =========================
+         INFORMATION PAGE
+    ========================== -->
+
+    <section class="information-section">
+
+
+        <div class="information-header">
+
+            <p class="small-title">
+                LET'S MAKE IT SPECIAL
+            </p>
+
+            <div
+                id="eventIcon"
+                class="information-icon">
+            </div>
+
+            <h1 id="pageTitle">
+                Tell us about your event
+            </h1>
+
+            <p id="pageDescription">
+                Enter the details for your invitation.
+            </p>
+
+        </div>
+
+
+
+        <!-- =========================
+             FORM
+        ========================== -->
+
+        <div class="information-card">
+
+
+            <div class="selected-event">
+
+                Selected Event:
+
+                <strong id="selectedEvent">
+                </strong>
+
+            </div>
+
+
+            <form id="eventForm">
+
+                <div id="formContainer">
+                </div>
+
+
+                <!-- BUTTONS -->
+
+                <div class="information-buttons">
+
+                    <button
+                        type="button"
+                        class="back-btn"
+                        onclick="goBackToEvent()">
+
+                        ← Back
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="continue-btn"
+                        onclick="saveEventInformation()">
+
+                        Continue →
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

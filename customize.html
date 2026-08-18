@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Customize - InviteMe</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            💌 InviteMe
+        </div>
+
+        <div class="nav-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- =========================
+         CUSTOMIZE PAGE
+    ========================== -->
+
+    <section class="customize-section">
+
+
+        <div class="customize-header">
+
+            <p class="small-title">
+                MAKE IT PERSONAL
+            </p>
+
+            <h1>
+                Customize Your Invitation
+            </h1>
+
+            <p>
+                Make your invitation look the way you want.
+            </p>
+
+        </div>
+
+
+
+        <div class="customize-layout">
+
+
+            <!-- =====================
+                 CUSTOMIZE OPTIONS
+            ====================== -->
+
+            <div class="customize-options">
+
+
+                <h2>
+                    ✨ Customize
+                </h2>
+
+
+                <!-- PHOTO -->
+
+                <div class="custom-option">
+
+                    <label>
+                        🖼️ Add Photo
+                    </label>
+
+                    <input
+                        type="file"
+                        id="photoInput"
+                        accept="image/*">
+
+                </div>
+
+
+
+                <!-- BACKGROUND -->
+
+                <div class="custom-option">
+
+                    <label>
+                        🎨 Background Color
+                    </label>
+
+                    <input
+                        type="color"
+                        id="backgroundColor"
+                        value="#ffffff">
+
+                </div>
+
+
+
+                <!-- TEXT COLOR -->
+
+                <div class="custom-option">
+
+                    <label>
+                        ✍️ Text Color
+                    </label>
+
+                    <input
+                        type="color"
+                        id="textColor"
+                        value="#333333">
+
+                </div>
+
+
+
+                <!-- FONT SIZE -->
+
+                <div class="custom-option">
+
+                    <label>
+                        🔤 Title Size
+                    </label>
+
+                    <input
+                        type="range"
+                        id="fontSize"
+                        min="20"
+                        max="50"
+                        value="30">
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =====================
+                 LIVE PREVIEW
+            ====================== -->
+
+            <div class="custom-preview">
+
+                <h2>
+                    👀 Live Preview
+                </h2>
+
+
+                <div
+                    id="customInvitation"
+                    class="custom-invitation">
+
+
+                    <!-- PHOTO -->
+
+                    <img
+                        id="customPhoto"
+                        class="custom-photo"
+                        style="display:none;">
+
+
+                    <p class="preview-small">
+                        YOU'RE INVITED
+                    </p>
+
+
+                    <div
+                        id="customIcon"
+                        class="preview-icon">
+
+                        🎉
+
+                    </div>
+
+
+                    <h1 id="customTitle">
+                        Your Event
+                    </h1>
+
+
+                    <p>
+                        Hosted by
+                        <strong id="customHost">
+                            Your Name
+                        </strong>
+                    </p>
+
+
+                    <div class="custom-details"><p>
+                            📅
+                            <span id="customDate">
+                                Date
+                            </span>
+                        </p>
+
+                        <p>
+                            ⏰
+                            <span id="customTime">
+                                Time
+                            </span>
+                        </p>
+
+                        <p>
+                            📍
+                            <span id="customLocation">
+                                Location
+                            </span>
+                        </p>
+
+                    </div>
+
+
+                    <p id="customMessage">
+                        Your special message
+                        will appear here.
+                    </p>
+
+
+                </div>
+
+
+                <!-- BUTTONS -->
+
+                <div class="custom-buttons">
+
+                    <button
+                        class="back-btn"
+                        onclick="backToTemplate()">
+
+                        ← Back
+
+                    </button>
+
+
+                    <button
+                        class="continue-btn"
+                        onclick="goToPreview()">
+
+                        Continue →
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
