@@ -1606,3 +1606,138 @@ function goToPreview() {
 function backToTemplate() {
     window.location.href = "template.html";
 }
+// =====================================================
+// GUEST INVITATION PAGE
+// =====================================================
+
+const guestInvitation =
+    document.getElementById("guestInvitation");
+
+
+if (guestInvitation) {
+
+    const params =
+        new URLSearchParams(
+            window.location.search
+        );
+
+
+    const eventType =
+        params.get("eventType") || "";
+
+
+    const eventTitle =
+        params.get("eventTitle") || "Your Event";
+
+
+    const hostName =
+        params.get("hostName") || "Your Name";
+
+
+    const eventDate =
+        params.get("eventDate") || "Date";
+
+
+    const eventTime =
+        params.get("eventTime") || "Time";
+
+
+    const eventLocation =
+        params.get("eventLocation") || "Location";
+
+
+    const eventMessage =
+        params.get("eventMessage") ||
+        "Your special message will appear here.";
+
+
+    const selectedTemplate =
+        params.get("template") || "floral";
+
+
+    const photo =
+        params.get("photo") || "";
+
+
+    // =================================================
+    // SHOW INFORMATION
+    // =================================================
+
+    document.getElementById("guestTitle").textContent =
+        eventTitle;
+
+
+    document.getElementById("guestHost").textContent =
+        hostName;
+
+
+    document.getElementById("guestDate").textContent =
+        eventDate;
+
+
+    document.getElementById("guestTime").textContent =
+        eventTime;
+
+
+    document.getElementById("guestLocation").textContent =
+        eventLocation;
+
+
+    document.getElementById("guestMessage").textContent =
+        eventMessage;
+
+
+    // =================================================
+    // EVENT ICON
+    // =================================================
+
+    const icons = {
+
+        Birthday: "🎂",
+
+        Wedding: "💍",
+
+        Graduation: "🎓",
+
+        Anniversary: "💐",
+
+        Party: "🎉",
+
+        "Baby Shower": "👶"
+
+    };
+
+
+    document.getElementById("guestIcon").textContent =
+        icons[eventType] || "🎉";
+
+
+    // =================================================
+    // TEMPLATE
+    // =================================================
+
+    guestInvitation.classList.add(
+        selectedTemplate
+    );
+
+
+    // =================================================
+    // PHOTO
+    // =================================================
+
+    if (photo) {
+
+        const guestPhoto =
+            document.getElementById("guestPhoto");
+
+
+        guestPhoto.src =
+            photo;
+
+
+        guestPhoto.style.display =
+            "block";
+
+    }
+
+}
