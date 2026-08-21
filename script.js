@@ -1526,7 +1526,7 @@ function shareInvitation() {
         "";
 
 
-    // CREATE GUEST LINK
+    // CREATE INVITATION LINK
 
     const shareURL =
         new URL(
@@ -1535,33 +1535,116 @@ function shareInvitation() {
         );
 
 
-    shareURL.searchParams.set("eventType", eventType);
-    shareURL.searchParams.set("eventTitle", eventTitle);
-    shareURL.searchParams.set("hostName", hostName);
-    shareURL.searchParams.set("eventDate", eventDate);
-    shareURL.searchParams.set("eventTime", eventTime);
-    shareURL.searchParams.set("eventLocation", eventLocation);
-    shareURL.searchParams.set("eventMessage", eventMessage);
-    shareURL.searchParams.set("template", selectedTemplate);
-    shareURL.searchParams.set("photo", photo);
+    shareURL.searchParams.set(
+        "eventType",
+        eventType
+    );
+
+    shareURL.searchParams.set(
+        "eventTitle",
+        eventTitle
+    );
+
+    shareURL.searchParams.set(
+        "hostName",
+        hostName
+    );
+
+    shareURL.searchParams.set(
+        "eventDate",
+        eventDate
+    );
+
+    shareURL.searchParams.set(
+        "eventTime",
+        eventTime
+    );
+
+    shareURL.searchParams.set(
+        "eventLocation",
+        eventLocation
+    );
+
+    shareURL.searchParams.set(
+        "eventMessage",
+        eventMessage
+    );
+
+    shareURL.searchParams.set(
+        "template",
+        selectedTemplate
+    );
+
+    shareURL.searchParams.set(
+        "photo",
+        photo
+    );
 
 
-    // COPY LINK
+    // SHOW LINK
 
-    navigator.clipboard.writeText(shareURL.href)
-        .then(function () {
+    const shareLinkBox =
+        document.getElementById(
+            "shareLinkBox"
+        );
 
-            alert("Invitation link copied! 🔗");
+    const shareLinkInput =
+        document.getElementById(
+            "shareLinkInput"
+        );
 
-        })
-        .catch(function () {
 
-            prompt(
-                "Copy your invitation link:",
-                shareURL.href
-            );
+    if (shareLinkBox && shareLinkInput) {
 
-        });
+        shareLinkInput.value =
+            shareURL.href;
+
+        shareLinkBox.style.display =
+            "block";
+
+    }
+
+}
+
+
+// =====================================================
+// COPY INVITATION LINK
+// =====================================================
+
+function copyInvitationLink() {
+
+    const shareLinkInput =
+        document.getElementById(
+            "shareLinkInput"
+        );
+
+
+    if (!shareLinkInput) {
+        return;
+    }
+
+
+    navigator.clipboard.writeText(
+        shareLinkInput.value
+    )
+    .then(function () {
+
+        alert(
+            "Invitation link copied! 🔗"
+        );
+
+    })
+    .catch(function () {
+
+        shareLinkInput.select();
+
+        document.execCommand("copy");
+
+        alert(
+            "Invitation link copied! 🔗"
+        );
+
+    });
 
 }
 
