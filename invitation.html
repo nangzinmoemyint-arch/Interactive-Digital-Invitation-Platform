@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You're Invited</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="invitation-page">
+        <div class="invitation-card">
+
+            <div class="invitation-icon">🎉</div>
+
+            <h1>YOU'RE INVITED</h1>
+
+            <h2 id="eventName">Your Event</h2>
+
+            <p class="host">
+                Hosted by <span id="hostName">Your Name</span>
+            </p>
+
+            <div class="event-details">
+
+                <p>
+                    📅 <span id="eventDate">Date</span>
+                </p>
+
+                <p>
+                    ⏰ <span id="eventTime">Time</span>
+                </p>
+
+                <p>
+                    📍 <span id="eventLocation">Location</span>
+                </p>
+
+            </div>
+
+            <p id="eventMessage" class="message">
+                Hope to see you there!
+            </p>
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+
+        const eventName = params.get("eventName");
+        const hostName = params.get("hostName");
+        const eventDate = params.get("eventDate");
+        const eventTime = params.get("eventTime");
+        const eventLocation = params.get("eventLocation");
+        const eventMessage = params.get("eventMessage");
+
+        if (eventName) {
+            document.getElementById("eventName").textContent = eventName;
+        }
+
+        if (hostName) {
+            document.getElementById("hostName").textContent = hostName;
+        }
+
+        if (eventDate) {
+            document.getElementById("eventDate").textContent = eventDate;
+        }
+
+        if (eventTime) {
+            document.getElementById("eventTime").textContent = eventTime;
+        }
+
+        if (eventLocation) {
+            document.getElementById("eventLocation").textContent = eventLocation;
+        }
+
+        if (eventMessage) {
+            document.getElementById("eventMessage").textContent = eventMessage;
+        }
+    </script>
+
+</body>
+</html>
