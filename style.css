@@ -1588,3 +1588,235 @@ footer p {
     }
 
 }
+/* =========================
+   GUEST INVITATION
+========================= */
+
+.guest-invitation-section {
+
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 40px 20px;
+
+    background: #fff8fb;
+
+}
+
+
+.guest-invitation {
+
+    width: 100%;
+
+    max-width: 430px;
+
+    min-height: 560px;
+
+    padding: 40px 30px;
+
+    background: white;
+
+    border: 3px solid #e7b3c7;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 12px 35px
+        rgba(0, 0, 0, 0.1);
+
+    text-align: center;
+
+}
+
+
+/* PHOTO */
+
+.guest-photo {
+
+    width: 130px;
+
+    height: 130px;
+
+    object-fit: cover;
+
+    border-radius: 10px;
+
+    margin-bottom: 20px;
+
+}
+
+
+/* SMALL TEXT */
+
+.guest-small {
+
+    font-size: 12px;
+
+    letter-spacing: 3px;
+
+    color: #777;
+
+}
+
+
+/* ICON */
+
+.guest-icon {
+
+    font-size: 50px;
+
+    margin: 25px 0 10px;
+
+}
+
+
+/* TITLE */
+
+#guestTitle {
+
+    font-size: 32px;
+
+    margin: 10px 0;
+
+}
+
+
+/* HOST */
+
+.guest-host {
+
+    font-size: 16px;
+
+}
+
+
+/* DETAILS */
+
+.guest-details {
+
+    margin: 30px 0;
+
+    line-height: 1.8;
+
+}
+
+
+.guest-details p {
+
+    margin: 7px;
+
+}
+
+
+/* MESSAGE */
+
+.guest-message {
+
+    margin-top: 30px;
+
+    line-height: 1.7;
+
+    color: #555;
+
+}
+
+
+/* TEMPLATE STYLES */
+
+.guest-invitation.floral {
+
+    border-color: #e7a9c1;
+
+}
+
+
+.guest-invitation.floral #guestTitle {
+
+    color: #c34f7d;
+
+}
+
+
+.guest-invitation.elegant {
+
+    border-color: #c9b37e;
+
+}
+
+
+.guest-invitation.elegant #guestTitle {
+
+    color: #8b6f32;
+
+}
+
+
+.guest-invitation.cute {
+
+    border-color: #ef9fbd;
+
+}
+
+
+.guest-invitation.cute #guestTitle {
+
+    color: #e75b91;
+
+}
+
+
+.guest-invitation.modern {
+
+    background: #202020;
+
+    color: white;
+
+    border-color: #555;
+
+}
+
+
+.guest-invitation.modern .guest-message {
+
+    color: #ddd;
+
+}
+
+
+.guest-invitation.minimal {
+
+    border-color: #ddd;
+
+}
+
+
+.guest-invitation.minimal #guestTitle {
+
+    color: #333;
+
+}
+
+
+/* MOBILE */
+
+@media (max-width: 500px) {
+
+    .guest-invitation {
+
+        padding: 30px 20px;
+
+    }
+
+
+    #guestTitle {
+
+        font-size: 28px;
+
+    }
+
+}
