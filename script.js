@@ -1236,15 +1236,12 @@ function continueToPreview() {
 
 }
 
-
 // =====================================================
 // PREVIEW PAGE
 // =====================================================
 
 const finalCard =
-    document.getElementById(
-        "finalCard"
-    );
+    document.getElementById("finalInvitation");
 
 
 // =====================================================
@@ -1257,7 +1254,6 @@ function getInvitationData() {
         new URLSearchParams(
             window.location.search
         );
-
 
     return {
 
@@ -1299,7 +1295,12 @@ function getInvitationData() {
         selectedTemplate:
             params.get("template") ||
             localStorage.getItem("selectedTemplate") ||
-            "floral"
+            "floral",
+
+        photo:
+            params.get("photo") ||
+            localStorage.getItem("invitationPhoto") ||
+            ""
 
     };
 
@@ -1316,89 +1317,92 @@ if (finalCard) {
         getInvitationData();
 
 
-    const previewTitle =
-        document.getElementById(
-            "previewTitle"
-        );
+    const finalTitle =
+        document.getElementById("finalTitle");
 
-    const previewHost =
-        document.getElementById(
-            "previewHost"
-        );
+    const finalHost =
+        document.getElementById("finalHost");
 
-    const previewDate =
-        document.getElementById(
-            "previewDate"
-        );
+    const finalDate =
+        document.getElementById("finalDate");
 
-    const previewTime =
-        document.getElementById(
-            "previewTime"
-        );
+    const finalTime =
+        document.getElementById("finalTime");
 
-    const previewLocation =
-        document.getElementById(
-            "previewLocation"
-        );
+    const finalLocation =
+        document.getElementById("finalLocation");
 
-    const previewMessage =
-        document.getElementById(
-            "previewMessage"
-        );
+    const finalMessage =
+        document.getElementById("finalMessage");
 
-    const previewIcon =
-        document.getElementById(
-            "previewIcon"
-        );
+    const finalIcon =
+        document.getElementById("finalIcon");
+
+    const finalPhoto =
+        document.getElementById("finalPhoto");
 
 
-    if (previewTitle) {
+    // TITLE
 
-        previewTitle.textContent =
+    if (finalTitle) {
+
+        finalTitle.textContent =
             data.eventTitle;
 
     }
 
 
-    if (previewHost) {
+    // HOST
 
-        previewHost.textContent =
+    if (finalHost) {
+
+        finalHost.textContent =
             data.hostName;
 
     }
 
 
-    if (previewDate) {
+    // DATE
 
-        previewDate.textContent =
+    if (finalDate) {
+
+        finalDate.textContent =
             data.eventDate;
 
     }
 
 
-    if (previewTime) {
+    // TIME
 
-        previewTime.textContent =
+    if (finalTime) {
+
+        finalTime.textContent =
             data.eventTime;
 
     }
 
 
-    if (previewLocation) {
+    // LOCATION
 
-        previewLocation.textContent =
+    if (finalLocation) {
+
+        finalLocation.textContent =
             data.eventLocation;
 
     }
 
 
-    if (previewMessage) {
+    // MESSAGE
 
-        previewMessage.textContent =
+    if (finalMessage) {
+
+        finalMessage.textContent =
             data.eventMessage;
 
     }
 
+
+    // ICON
 
     const icons = {
 
@@ -1412,34 +1416,48 @@ if (finalCard) {
     };
 
 
-    if (previewIcon) {
+    if (finalIcon) {
 
-        previewIcon.textContent =
+        finalIcon.textContent =
             icons[data.eventType] || "🎉";
 
     }
 
+
+    // TEMPLATE
 
     finalCard.classList.add(
         data.selectedTemplate
     );
 
 
-    // =================================================
-    // IF SHARED LINK
-    // =================================================
+    // PHOTO
+
+    if (data.photo && finalPhoto) {
+
+        finalPhoto.src =
+            data.photo;
+
+        finalPhoto.style.display =
+            "block";
+
+    }
+
+
+    // SHARED LINK
 
     if (window.location.search) {
 
         const backButton =
-            document.getElementById(
-                "backButton"
+            document.querySelector(
+                ".final-buttons .back-btn"
             );
 
         const shareButton =
-            document.getElementById(
-                "shareButton"
+            document.querySelector(
+                ".final-buttons .share-btn"
             );
+
 
         if (backButton) {
 
@@ -1447,6 +1465,7 @@ if (finalCard) {
                 "none";
 
         }
+
 
         if (shareButton) {
 
