@@ -1476,47 +1476,115 @@ function backToCustomize() {
 // SHARE INVITATION
 // =====================================================
 
-function shareInvitation() {
+        function shareInvitation() {
 
     const eventType =
-        localStorage.getItem(
-            "eventType"
-        ) || "";
+        localStorage.getItem("eventType") || "";
 
     const eventTitle =
-        localStorage.getItem(
-            "eventTitle"
-        ) || "";
+        localStorage.getItem("eventTitle") || "";
 
     const hostName =
-        localStorage.getItem(
-            "hostName"
-        ) || "";
+        localStorage.getItem("hostName") || "";
 
     const eventDate =
-        localStorage.getItem(
-            "eventDate"
-        ) || "";
+        localStorage.getItem("eventDate") || "";
 
     const eventTime =
-        localStorage.getItem(
-            "eventTime"
-        ) || "";
+        localStorage.getItem("eventTime") || "";
 
     const eventLocation =
-        localStorage.getItem(
-            "eventLocation"
-        ) || "";
+        localStorage.getItem("eventLocation") || "";
 
     const eventMessage =
-        localStorage.getItem(
-            "eventMessage"
-        ) || "";
+        localStorage.getItem("eventMessage") || "";
 
     const selectedTemplate =
-        localStorage.getItem(
-            "selectedTemplate"
-        ) || "floral";
+        localStorage.getItem("selectedTemplate") ||
+        "floral";
+
+    const photo =
+        localStorage.getItem("invitationPhoto") ||
+        "";
+
+
+    // CREATE GUEST LINK
+
+    const shareURL =
+        new URL(
+            "invitation.html",
+            window.location.href
+        );
+
+
+    shareURL.searchParams.set(
+        "eventType",
+        eventType
+    );
+
+    shareURL.searchParams.set(
+        "eventTitle",
+        eventTitle
+    );
+
+    shareURL.searchParams.set(
+        "hostName",
+        hostName
+    );
+
+    shareURL.searchParams.set(
+        "eventDate",
+        eventDate
+    );
+
+    shareURL.searchParams.set(
+        "eventTime",
+        eventTime
+    );
+
+    shareURL.searchParams.set(
+        "eventLocation",
+        eventLocation
+    );
+
+    shareURL.searchParams.set(
+        "eventMessage",
+        eventMessage
+    );
+
+    shareURL.searchParams.set(
+        "template",
+        selectedTemplate
+    );
+
+    shareURL.searchParams.set(
+        "photo",
+        photo
+    );
+
+
+    // COPY LINK
+
+    navigator.clipboard.writeText(
+        shareURL.href
+    )
+    .then(function () {
+
+        alert(
+            "Invitation link copied! 🔗"
+        );
+
+    })
+    .catch(function () {
+
+        prompt(
+            "Copy your invitation link:",
+            shareURL.href
+        );
+
+    });
+
+} 
 
 
     // =================================================
