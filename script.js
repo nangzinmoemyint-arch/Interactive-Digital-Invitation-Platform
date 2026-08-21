@@ -1522,11 +1522,8 @@ function shareInvitation() {
         "floral";
 
     const photo =
-        localStorage.getItem("invitationPhoto") ||
-        "";
+        localStorage.getItem("invitationPhoto") || "";
 
-
-    // CREATE INVITATION LINK
 
     const shareURL =
         new URL(
@@ -1604,6 +1601,12 @@ function shareInvitation() {
 
     }
 
+
+    // SAVE LINK FOR COPY BUTTON
+
+    window.invitationShareURL =
+        shareURL.href;
+
 }
 
 
@@ -1613,19 +1616,15 @@ function shareInvitation() {
 
 function copyInvitationLink() {
 
-    const shareLinkInput =
-        document.getElementById(
-            "shareLinkInput"
-        );
+    if (!window.invitationShareURL) {
 
-
-    if (!shareLinkInput) {
         return;
+
     }
 
 
     navigator.clipboard.writeText(
-        shareLinkInput.value
+        window.invitationShareURL
     )
     .then(function () {
 
@@ -1636,17 +1635,27 @@ function copyInvitationLink() {
     })
     .catch(function () {
 
-        shareLinkInput.select();
+        const shareLinkInput =
+            document.getElementById(
+                "shareLinkInput"
+            );
 
-        document.execCommand("copy");
+        if (shareLinkInput) {
 
-        alert(
-            "Invitation link copied! 🔗"
-        );
+            shareLinkInput.select();
+
+            document.execCommand("copy");
+
+            alert(
+                "Invitation link copied! 🔗"
+            );
+
+        }
 
     });
 
 }
+
 
 
 // =====================================================
