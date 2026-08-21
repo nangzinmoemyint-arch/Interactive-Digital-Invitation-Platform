@@ -1496,35 +1496,6 @@ function backToCustomize() {
 
 function shareInvitation() {
 
-    const eventType =
-        localStorage.getItem("eventType") || "";
-
-    const eventTitle =
-        localStorage.getItem("eventTitle") || "";
-
-    const hostName =
-        localStorage.getItem("hostName") || "";
-
-    const eventDate =
-        localStorage.getItem("eventDate") || "";
-
-    const eventTime =
-        localStorage.getItem("eventTime") || "";
-
-    const eventLocation =
-        localStorage.getItem("eventLocation") || "";
-
-    const eventMessage =
-        localStorage.getItem("eventMessage") || "";
-
-    const selectedTemplate =
-        localStorage.getItem("selectedTemplate") ||
-        "floral";
-
-    const photo =
-        localStorage.getItem("invitationPhoto") || "";
-
-
     const shareURL =
         new URL(
             "invitation.html",
@@ -1534,61 +1505,53 @@ function shareInvitation() {
 
     shareURL.searchParams.set(
         "eventType",
-        eventType
+        localStorage.getItem("eventType") || ""
     );
 
     shareURL.searchParams.set(
         "eventTitle",
-        eventTitle
+        localStorage.getItem("eventTitle") || ""
     );
 
     shareURL.searchParams.set(
         "hostName",
-        hostName
+        localStorage.getItem("hostName") || ""
     );
 
     shareURL.searchParams.set(
         "eventDate",
-        eventDate
+        localStorage.getItem("eventDate") || ""
     );
 
     shareURL.searchParams.set(
         "eventTime",
-        eventTime
+        localStorage.getItem("eventTime") || ""
     );
 
     shareURL.searchParams.set(
         "eventLocation",
-        eventLocation
+        localStorage.getItem("eventLocation") || ""
     );
 
     shareURL.searchParams.set(
         "eventMessage",
-        eventMessage
+        localStorage.getItem("eventMessage") || ""
     );
 
     shareURL.searchParams.set(
         "template",
-        selectedTemplate
-    );
-
-    shareURL.searchParams.set(
-        "photo",
-        photo
+        localStorage.getItem("selectedTemplate") ||
+        "floral"
     );
 
 
-    // SHOW LINK
+    // Show the link on the page
 
     const shareLinkBox =
-        document.getElementById(
-            "shareLinkBox"
-        );
+        document.getElementById("shareLinkBox");
 
     const shareLinkInput =
-        document.getElementById(
-            "shareLinkInput"
-        );
+        document.getElementById("shareLinkInput");
 
 
     if (shareLinkBox && shareLinkInput) {
@@ -1602,7 +1565,7 @@ function shareInvitation() {
     }
 
 
-    // SAVE LINK FOR COPY BUTTON
+    // Save link for Copy Link button
 
     window.invitationShareURL =
         shareURL.href;
@@ -1635,14 +1598,14 @@ function copyInvitationLink() {
     })
     .catch(function () {
 
-        const shareLinkInput =
+        const input =
             document.getElementById(
                 "shareLinkInput"
             );
 
-        if (shareLinkInput) {
+        if (input) {
 
-            shareLinkInput.select();
+            input.select();
 
             document.execCommand("copy");
 
@@ -1655,25 +1618,6 @@ function copyInvitationLink() {
     });
 
 }
-
-
-
-// =====================================================
-// CUSTOMIZE PAGE NAVIGATION
-// =====================================================
-
-function goToPreview() {
-
-    window.location.href = "preview.html";
-
-}
-
-function backToTemplate() {
-
-    window.location.href = "template.html";
-
-}
-
 
 // =====================================================
 // GUEST INVITATION PAGE
