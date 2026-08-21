@@ -1618,7 +1618,22 @@ function copyInvitationLink() {
     });
 
 }
+// =====================================================
+// CUSTOMIZE PAGE NAVIGATION
+// =====================================================
 
+function goToPreview() {
+
+    window.location.href = "preview.html";
+
+}
+
+
+function backToTemplate() {
+
+    window.location.href = "template.html";
+
+}
 // =====================================================
 // GUEST INVITATION PAGE
 // =====================================================
