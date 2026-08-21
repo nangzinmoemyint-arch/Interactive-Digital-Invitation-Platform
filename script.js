@@ -1581,130 +1581,127 @@ function backToTemplate() {
 const guestInvitation =
     document.getElementById("guestInvitation");
 
-
 if (guestInvitation) {
 
     const params =
-        new URLSearchParams(
-            window.location.search
-        );
-
+        new URLSearchParams(window.location.search);
 
     const eventType =
         params.get("eventType") || "";
 
-
     const eventTitle =
         params.get("eventTitle") || "Your Event";
-
 
     const hostName =
         params.get("hostName") || "Your Name";
 
-
     const eventDate =
         params.get("eventDate") || "Date";
-
 
     const eventTime =
         params.get("eventTime") || "Time";
 
-
     const eventLocation =
         params.get("eventLocation") || "Location";
-
 
     const eventMessage =
         params.get("eventMessage") ||
         "Your special message will appear here.";
 
-
     const selectedTemplate =
         params.get("template") || "floral";
-
 
     const photo =
         params.get("photo") || "";
 
 
-    // =================================================
     // SHOW INFORMATION
-    // =================================================
 
-    document.getElementById("guestTitle").textContent =
-        eventTitle;
+    const guestTitle =
+        document.getElementById("guestTitle");
 
+    const guestHost =
+        document.getElementById("guestHost");
 
-    document.getElementById("guestHost").textContent =
-        hostName;
+    const guestDate =
+        document.getElementById("guestDate");
 
+    const guestTime =
+        document.getElementById("guestTime");
 
-    document.getElementById("guestDate").textContent =
-        eventDate;
+    const guestLocation =
+        document.getElementById("guestLocation");
 
+    const guestMessage =
+        document.getElementById("guestMessage");
 
-    document.getElementById("guestTime").textContent =
-        eventTime;
-
-
-    document.getElementById("guestLocation").textContent =
-        eventLocation;
-
-
-    document.getElementById("guestMessage").textContent =
-        eventMessage;
+    const guestIcon =
+        document.getElementById("guestIcon");
 
 
-    // =================================================
+    if (guestTitle) {
+        guestTitle.textContent = eventTitle;
+    }
+
+    if (guestHost) {
+        guestHost.textContent = hostName;
+    }
+
+    if (guestDate) {
+        guestDate.textContent = eventDate;
+    }
+
+    if (guestTime) {
+        guestTime.textContent = eventTime;
+    }
+
+    if (guestLocation) {
+        guestLocation.textContent = eventLocation;
+    }
+
+    if (guestMessage) {
+        guestMessage.textContent = eventMessage;
+    }
+
+
     // EVENT ICON
-    // =================================================
 
     const icons = {
-
         Birthday: "🎂",
-
         Wedding: "💍",
-
         Graduation: "🎓",
-
         Anniversary: "💐",
-
         Party: "🎉",
-
         "Baby Shower": "👶"
-
     };
 
+    if (guestIcon) {
+        guestIcon.textContent =
+            icons[eventType] || "🎉";
+    }
 
-    document.getElementById("guestIcon").textContent =
-        icons[eventType] || "🎉";
 
-
-    // =================================================
     // TEMPLATE
-    // =================================================
 
     guestInvitation.classList.add(
         selectedTemplate
     );
 
 
-    // =================================================
     // PHOTO
-    // =================================================
 
     if (photo) {
 
         const guestPhoto =
             document.getElementById("guestPhoto");
 
+        if (guestPhoto) {
 
-        guestPhoto.src =
-            photo;
+            guestPhoto.src = photo;
 
+            guestPhoto.style.display = "block";
 
-        guestPhoto.style.display =
-            "block";
+        }
 
     }
 
