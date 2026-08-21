@@ -1,6 +1,11 @@
-// =========================
+// =====================================================
+// INVITEME - DIGITAL INVITATION PLATFORM
+// =====================================================
+
+
+// =====================================================
 // HOME PAGE
-// =========================
+// =====================================================
 
 const createBtn = document.getElementById("createBtn");
 
@@ -12,31 +17,38 @@ if (createBtn) {
 
     });
 
-}// =========================
+}
+
+
+// =====================================================
+// GO HOME
+// =====================================================
+
+function goHome() {
+
+    window.location.href = "index.html";
+
+}
+
+
+// =====================================================
 // EVENT PAGE
-// =========================
+// =====================================================
 
 const eventCards =
     document.querySelectorAll(".event-card");
 
+eventCards.forEach(function (card) {
 
-eventCards.forEach(function(card) {
-
-    card.addEventListener("click", function() {
+    card.addEventListener("click", function () {
 
         const eventType =
             card.getAttribute("data-event");
-
-
-        // Save selected event
 
         localStorage.setItem(
             "eventType",
             eventType
         );
-
-
-        // Go to information page
 
         window.location.href =
             "information.html";
@@ -46,18 +58,21 @@ eventCards.forEach(function(card) {
 });
 
 
-// =========================
-// BACK TO HOME
-// =========================
+// =====================================================
+// BACK TO EVENT
+// =====================================================
 
-function goHome() {
+function goBackToEvent() {
 
     window.location.href =
-        "index.html";
+        "event.html";
 
-}// =========================
+}
+
+
+// =====================================================
 // INFORMATION PAGE
-// =========================
+// =====================================================
 
 const formContainer =
     document.getElementById("formContainer");
@@ -74,14 +89,13 @@ const pageTitle =
 const pageDescription =
     document.getElementById("pageDescription");
 
-
 const selectedEvent =
     localStorage.getItem("eventType");
 
 
-// =========================
-// EVENT INFORMATION
-// =========================
+// =====================================================
+// EVENT DATA
+// =====================================================
 
 const eventData = {
 
@@ -99,22 +113,19 @@ const eventData = {
             {
                 id: "eventTitle",
                 label: "Birthday Title",
-                placeholder:
-                    "e.g. Su Su's 20th Birthday"
+                placeholder: "e.g. Su Su's 20th Birthday"
             },
 
             {
                 id: "hostName",
                 label: "Birthday Person",
-                placeholder:
-                    "e.g. Su Su"
+                placeholder: "e.g. Su Su"
             },
 
             {
                 id: "age",
                 label: "Age",
-                placeholder:
-                    "e.g. 20"
+                placeholder: "e.g. 20"
             },
 
             {
@@ -132,8 +143,7 @@ const eventData = {
             {
                 id: "eventLocation",
                 label: "Location",
-                placeholder:
-                    "e.g. ABC Café"
+                placeholder: "e.g. ABC Café"
             },
 
             {
@@ -242,7 +252,9 @@ const eventData = {
                 id: "eventDate",
                 label: "Graduation Date",
                 type: "date"
-            },{
+            },
+
+            {
                 id: "eventTime",
                 label: "Time",
                 type: "time"
@@ -275,7 +287,7 @@ const eventData = {
         title: "Tell us about your anniversary",
 
         description:
-            "Celebrate your journey together.",
+            "Celebrate your beautiful journey together.",
 
         fields: [
 
@@ -431,7 +443,9 @@ const eventData = {
                 id: "eventTime",
                 label: "Time",
                 type: "time"
-            },{
+            },
+
+            {
                 id: "eventLocation",
                 label: "Location",
                 placeholder:
@@ -453,9 +467,9 @@ const eventData = {
 };
 
 
-// =========================
-// CREATE FORM
-// =========================
+// =====================================================
+// CREATE INFORMATION FORM
+// =====================================================
 
 if (
     formContainer &&
@@ -467,23 +481,35 @@ if (
         eventData[selectedEvent];
 
 
-    eventIcon.textContent =
-        data.icon;
+    if (eventIcon) {
+        eventIcon.textContent =
+            data.icon;
+    }
 
 
-    selectedEventText.textContent =
-        selectedEvent;
+    if (selectedEventText) {
+        selectedEventText.textContent =
+            selectedEvent;
+    }
 
 
-    pageTitle.textContent =
-        data.title;
+    if (pageTitle) {
+        pageTitle.textContent =
+            data.title;
+    }
 
 
-    pageDescription.textContent =
-        data.description;
+    if (pageDescription) {
+        pageDescription.textContent =
+            data.description;
+    }
 
 
-    data.fields.forEach(function(field) {
+    // Clear old fields
+    formContainer.innerHTML = "";
+
+
+    data.fields.forEach(function (field) {
 
         const group =
             document.createElement("div");
@@ -523,6 +549,8 @@ if (
         input.id =
             field.id;
 
+        input.name =
+            field.id;
 
         input.placeholder =
             field.placeholder || "";
@@ -539,11 +567,16 @@ if (
 }
 
 
-// =========================
+// =====================================================
 // SAVE INFORMATION
-// =========================
+// =====================================================
 
 function saveEventInformation() {
+
+    if (!formContainer) {
+        return;
+    }
+
 
     const inputs =
         formContainer.querySelectorAll(
@@ -554,11 +587,18 @@ function saveEventInformation() {
     let allFilled = true;
 
 
-    inputs.forEach(function(input) {
+    inputs.forEach(function (input) {
 
         if (input.value.trim() === "") {
 
             allFilled = false;
+
+            input.style.border =
+                "2px solid #e74c3c";
+
+        } else {
+
+            input.style.border = "";
 
         }
 
@@ -576,7 +616,7 @@ function saveEventInformation() {
     }
 
 
-    inputs.forEach(function(input) {
+    inputs.forEach(function (input) {
 
         localStorage.setItem(
             input.id,
@@ -592,18 +632,9 @@ function saveEventInformation() {
 }
 
 
-// =========================
-// BACK TO EVENT
-// =========================
-
-function goBackToEvent() {
-
-    window.location.href =
-        "event.html";
-
-}// =========================
+// =====================================================
 // TEMPLATE PAGE
-// =========================
+// =====================================================
 
 const invitationCard =
     document.getElementById("invitationCard");
@@ -632,71 +663,88 @@ if (invitationCard) {
         localStorage.getItem("eventMessage");
 
 
-    // SHOW INFORMATION
+    const titleElement =
+        document.getElementById("previewTitle");
 
-    document.getElementById(
-        "previewTitle"
-    ).textContent =
-        eventTitle || "Your Event";
+    const hostElement =
+        document.getElementById("previewHost");
 
+    const dateElement =
+        document.getElementById("previewDate");
 
-    document.getElementById(
-        "previewHost"
-    ).textContent =
-        hostName || "Your Name";
+    const timeElement =
+        document.getElementById("previewTime");
 
+    const locationElement =
+        document.getElementById("previewLocation");
 
-    document.getElementById(
-        "previewDate"
-    ).textContent =
-        eventDate || "Date";
+    const messageElement =
+        document.getElementById("previewMessage");
 
-
-    document.getElementById(
-        "previewTime"
-    ).textContent =
-        eventTime || "Time";
+    const iconElement =
+        document.getElementById("previewIcon");
 
 
-    document.getElementById(
-        "previewLocation"
-    ).textContent =
-        eventLocation || "Location";
+    if (titleElement) {
+        titleElement.textContent =
+            eventTitle || "Your Event";
+    }
 
 
-    document.getElementById(
-        "previewMessage"
-    ).textContent =
-        eventMessage ||
-        "Your special message will appear here.";
+    if (hostElement) {
+        hostElement.textContent =
+            hostName || "Your Name";
+    }
 
 
-    // EVENT ICON
+    if (dateElement) {
+        dateElement.textContent =
+            eventDate || "Date";
+    }
+
+
+    if (timeElement) {
+        timeElement.textContent =
+            eventTime || "Time";
+    }
+
+
+    if (locationElement) {
+        locationElement.textContent =
+            eventLocation || "Location";
+    }
+
+
+    if (messageElement) {
+        messageElement.textContent =
+            eventMessage ||
+            "Your special message will appear here.";
+    }
+
 
     const icons = {
 
         Birthday: "🎂",
-
         Wedding: "💍",
-
         Graduation: "🎓",
-
         Anniversary: "💐",
-
         Party: "🎉",
-
         "Baby Shower": "👶"
 
     };
 
 
-    document.getElementById(
-        "previewIcon"
-    ).textContent =
-        icons[eventType] || "🎉";
+    if (iconElement) {
+
+        iconElement.textContent =
+            icons[eventType] || "🎉";
+
+    }
 
 
+    // =================================================
     // TEMPLATE SELECTION
+    // =================================================
 
     const templateOptions =
         document.querySelectorAll(
@@ -704,14 +752,14 @@ if (invitationCard) {
         );
 
 
-    templateOptions.forEach(function(option) {
+    templateOptions.forEach(function (option) {
 
         option.addEventListener(
             "click",
-            function() {
+            function () {
 
                 templateOptions.forEach(
-                    function(item) {
+                    function (item) {
 
                         item.classList.remove(
                             "active"
@@ -756,12 +804,59 @@ if (invitationCard) {
 
     });
 
+
+    // =================================================
+    // LOAD SAVED TEMPLATE
+    // =================================================
+
+    const savedTemplate =
+        localStorage.getItem(
+            "selectedTemplate"
+        );
+
+
+    if (savedTemplate) {
+
+        invitationCard.classList.remove(
+            "floral",
+            "elegant",
+            "cute",
+            "modern",
+            "minimal"
+        );
+
+
+        invitationCard.classList.add(
+            savedTemplate
+        );
+
+
+        templateOptions.forEach(
+            function (option) {
+
+                if (
+                    option.getAttribute(
+                        "data-template"
+                    ) === savedTemplate
+                ) {
+
+                    option.classList.add(
+                        "active"
+                    );
+
+                }
+
+            }
+        );
+
+    }
+
 }
 
 
-// =========================
+// =====================================================
 // BACK TO INFORMATION
-// =========================
+// =====================================================
 
 function backToInformation() {
 
@@ -771,29 +866,29 @@ function backToInformation() {
 }
 
 
-// =========================
+// =====================================================
 // CONTINUE TO CUSTOMIZE
-// =========================
+// =====================================================
 
 function continueToCustomize() {
 
     window.location.href =
         "customize.html";
 
-}// =========================
+}
+
+
+// =====================================================
 // CUSTOMIZE PAGE
-// =========================
+// =====================================================
 
 const customInvitation =
-    document.getElementById("customInvitation");
+    document.getElementById(
+        "customInvitation"
+    );
 
 
 if (customInvitation) {
-
-
-    // =========================
-    // GET SAVED INFORMATION
-    // =========================
 
     const eventType =
         localStorage.getItem("eventType");
@@ -817,129 +912,179 @@ if (customInvitation) {
         localStorage.getItem("eventMessage");
 
 
-    // =========================
-    // SHOW INFORMATION
-    // =========================
+    const customTitle =
+        document.getElementById(
+            "customTitle"
+        );
 
-    document.getElementById(
-        "customTitle"
-    ).textContent =
-        eventTitle || "Your Event";
+    const customHost =
+        document.getElementById(
+            "customHost"
+        );
 
+    const customDate =
+        document.getElementById(
+            "customDate"
+        );
 
-    document.getElementById(
-        "customHost"
-    ).textContent =
-        hostName || "Your Name";
+    const customTime =
+        document.getElementById(
+            "customTime"
+        );
 
+    const customLocation =
+        document.getElementById(
+            "customLocation"
+        );
 
-    document.getElementById(
-        "customDate"
-    ).textContent =
-        eventDate || "Date";
+    const customMessage =
+        document.getElementById(
+            "customMessage"
+        );
 
-
-    document.getElementById(
-        "customTime"
-    ).textContent =
-        eventTime || "Time";
-
-
-    document.getElementById(
-        "customLocation"
-    ).textContent =
-        eventLocation || "Location";
-
-
-    document.getElementById(
-        "customMessage"
-    ).textContent =
-        eventMessage ||
-        "Your special message will appear here.";
+    const customIcon =
+        document.getElementById(
+            "customIcon"
+        );
 
 
-    // =========================
-    // EVENT ICON
-    // =========================
+    if (customTitle) {
+        customTitle.textContent =
+            eventTitle || "Your Event";
+    }
+
+
+    if (customHost) {
+        customHost.textContent =
+            hostName || "Your Name";
+    }
+
+
+    if (customDate) {
+        customDate.textContent =
+            eventDate || "Date";
+    }
+
+
+    if (customTime) {
+        customTime.textContent =
+            eventTime || "Time";
+    }
+
+
+    if (customLocation) {
+        customLocation.textContent =
+            eventLocation || "Location";
+    }
+
+
+    if (customMessage) {
+        customMessage.textContent =
+            eventMessage ||
+            "Your special message will appear here.";
+    }
+
 
     const icons = {
 
         Birthday: "🎂",
-
         Wedding: "💍",
-
         Graduation: "🎓",
-
         Anniversary: "💐",
-
         Party: "🎉",
-
         "Baby Shower": "👶"
 
     };
 
 
-    document.getElementById(
-        "customIcon"
-    ).textContent =
-        icons[eventType] || "🎉";
+    if (customIcon) {
+
+        customIcon.textContent =
+            icons[eventType] || "🎉";
+
+    }
 
 
-    // =========================
+    // =================================================
     // PHOTO
-    // =========================
+    // =================================================
 
     const photoInput =
-        document.getElementById("photoInput");
+        document.getElementById(
+            "photoInput"
+        );
 
     const customPhoto =
-        document.getElementById("customPhoto");
+        document.getElementById(
+            "customPhoto"
+        );
 
 
-    photoInput.addEventListener(
-        "change",
-        function() {
+    if (photoInput && customPhoto) {
 
-            const file =
-                photoInput.files[0];
+        photoInput.addEventListener(
+            "change",
+            function () {
+
+                const file =
+                    photoInput.files[0];
 
 
-            if (!file) {
-                return;
+                if (!file) {
+                    return;
+                }
+
+
+                const reader =
+                    new FileReader();
+
+
+                reader.onload =
+                    function (event) {
+
+                        customPhoto.src =
+                            event.target.result;
+
+                        customPhoto.style.display =
+                            "block";
+
+
+                        localStorage.setItem(
+                            "invitationPhoto",
+                            event.target.result
+                        );
+
+                    };
+
+
+                reader.readAsDataURL(file);
+
             }
+        );
 
 
-            const reader =
-                new FileReader();
+        const savedPhoto =
+            localStorage.getItem(
+                "invitationPhoto"
+            );
 
 
-            reader.onload =
-                function(event) {
+        if (savedPhoto) {
 
-                    customPhoto.src =
-                        event.target.result;
+            customPhoto.src =
+                savedPhoto;
 
-                    customPhoto.style.display =
-                        "block";
-
-
-                    localStorage.setItem(
-                        "invitationPhoto",
-                        event.target.result
-                    );
-
-                };
-
-
-            reader.readAsDataURL(file);
+            customPhoto.style.display =
+                "block";
 
         }
-    );
+
+    }
 
 
-    // =========================
+    // =================================================
     // BACKGROUND COLOR
-    // =========================
+    // =================================================
 
     const backgroundColor =
         document.getElementById(
@@ -947,26 +1092,46 @@ if (customInvitation) {
         );
 
 
-    backgroundColor.addEventListener(
-        "input",
-        function() {
+    if (backgroundColor) {
 
-            customInvitation.style.backgroundColor =
-                backgroundColor.value;
+        backgroundColor.addEventListener(
+            "input",
+            function () {
+
+                customInvitation.style.backgroundColor =
+                    backgroundColor.value;
+
+                localStorage.setItem(
+                    "backgroundColor",
+                    backgroundColor.value
+                );
+
+            }
+        );
 
 
-            localStorage.setItem(
-                "backgroundColor",
-                backgroundColor.value
+        const savedBackground =
+            localStorage.getItem(
+                "backgroundColor"
             );
 
+
+        if (savedBackground) {
+
+            customInvitation.style.backgroundColor =
+                savedBackground;
+
+            backgroundColor.value =
+                savedBackground;
+
         }
-    );
+
+    }
 
 
-    // =========================
+    // =================================================
     // TEXT COLOR
-    // =========================
+    // =================================================
 
     const textColor =
         document.getElementById(
@@ -974,26 +1139,46 @@ if (customInvitation) {
         );
 
 
-    textColor.addEventListener(
-        "input",
-        function() {
+    if (textColor) {
 
-            customInvitation.style.color =
-                textColor.value;
+        textColor.addEventListener(
+            "input",
+            function () {
+
+                customInvitation.style.color =
+                    textColor.value;
+
+                localStorage.setItem(
+                    "textColor",
+                    textColor.value
+                );
+
+            }
+        );
 
 
-            localStorage.setItem(
-                "textColor",
-                textColor.value
+        const savedTextColor =
+            localStorage.getItem(
+                "textColor"
             );
 
+
+        if (savedTextColor) {
+
+            customInvitation.style.color =
+                savedTextColor;
+
+            textColor.value =
+                savedTextColor;
+
         }
-    );
+
+    }
 
 
-    // =========================
+    // =================================================
     // FONT SIZE
-    // =========================
+    // =================================================
 
     const fontSize =
         document.getElementById(
@@ -1001,317 +1186,283 @@ if (customInvitation) {
         );
 
 
-    fontSize.addEventListener(
-        "input",
-        function() {document.getElementById(
-                "customTitle"
-            ).style.fontSize =
-                fontSize.value + "px";
+    if (fontSize && customTitle) {
+
+        fontSize.addEventListener(
+            "input",
+            function () {
+
+                customTitle.style.fontSize =
+                    fontSize.value + "px";
+
+                localStorage.setItem(
+                    "fontSize",
+                    fontSize.value
+                );
+
+            }
+        );
 
 
-            localStorage.setItem(
-                "fontSize",
-                fontSize.value
+        const savedFontSize =
+            localStorage.getItem(
+                "fontSize"
             );
 
+
+        if (savedFontSize) {
+
+            customTitle.style.fontSize =
+                savedFontSize + "px";
+
+            fontSize.value =
+                savedFontSize;
+
         }
-    );
-
-
-    // =========================
-    // LOAD SAVED PHOTO
-    // =========================
-
-    const savedPhoto =
-        localStorage.getItem(
-            "invitationPhoto"
-        );
-
-
-    if (savedPhoto) {
-
-        customPhoto.src =
-            savedPhoto;
-
-        customPhoto.style.display =
-            "block";
-
-    }
-
-
-    // =========================
-    // LOAD SAVED COLORS
-    // =========================
-
-    const savedBackground =
-        localStorage.getItem(
-            "backgroundColor"
-        );
-
-
-    if (savedBackground) {
-
-        customInvitation.style.backgroundColor =
-            savedBackground;
-
-        backgroundColor.value =
-            savedBackground;
-
-    }
-
-
-    const savedTextColor =
-        localStorage.getItem(
-            "textColor"
-        );
-
-
-    if (savedTextColor) {
-
-        customInvitation.style.color =
-            savedTextColor;
-
-        textColor.value =
-            savedTextColor;
-
-    }
-
-
-    const savedFontSize =
-        localStorage.getItem(
-            "fontSize"
-        );
-
-
-    if (savedFontSize) {
-
-        document.getElementById(
-            "customTitle"
-        ).style.fontSize =
-            savedFontSize + "px";
-
-        fontSize.value =
-            savedFontSize;
 
     }
 
 }
 
 
-// =========================
-// BACK TO TEMPLATE
-// =========================
+// =====================================================
+// CONTINUE FROM CUSTOMIZE TO FINAL PREVIEW
+// =====================================================
 
-function backToTemplate() {
-
-    window.location.href =
-        "template.html";
-
-}
-
-
-// =========================
-// GO TO FINAL PREVIEW
-// =========================
-
-function goToPreview() {
+function continueToPreview() {
 
     window.location.href =
         "preview.html";
 
-}// =========================
-// FINAL PREVIEW
-// =========================
-
-const finalInvitation =
-    document.getElementById("finalInvitation");
+}
 
 
-if (finalInvitation) {
+// =====================================================
+// PREVIEW PAGE
+// =====================================================
 
-
-    // =========================
-    // GET INFORMATION
-    // =========================
-
-    const eventType =
-        localStorage.getItem("eventType");
-
-    const eventTitle =
-        localStorage.getItem("eventTitle");
-
-    const hostName =
-        localStorage.getItem("hostName");
-
-    const eventDate =
-        localStorage.getItem("eventDate");
-
-    const eventTime =
-        localStorage.getItem("eventTime");
-
-    const eventLocation =
-        localStorage.getItem("eventLocation");
-
-    const eventMessage =
-        localStorage.getItem("eventMessage");
-
-
-    // =========================
-    // SHOW INFORMATION
-    // =========================
-
+const finalCard =
     document.getElementById(
-        "finalTitle"
-    ).textContent =
-        eventTitle || "Your Event";
+        "finalCard"
+    );
 
 
-    document.getElementById(
-        "finalHost"
-    ).textContent =
-        hostName || "Your Name";
+// =====================================================
+// GET DATA FROM URL OR LOCAL STORAGE
+// =====================================================
+
+function getInvitationData() {
+
+    const params =
+        new URLSearchParams(
+            window.location.search
+        );
 
 
-    document.getElementById(
-        "finalDate"
-    ).textContent =
-        eventDate || "Date";
+    return {
+
+        eventType:
+            params.get("eventType") ||
+            localStorage.getItem("eventType") ||
+            "",
+
+        eventTitle:
+            params.get("eventTitle") ||
+            localStorage.getItem("eventTitle") ||
+            "Your Event",
+
+        hostName:
+            params.get("hostName") ||
+            localStorage.getItem("hostName") ||
+            "Your Name",
+
+        eventDate:
+            params.get("eventDate") ||
+            localStorage.getItem("eventDate") ||
+            "Date",
+
+        eventTime:
+            params.get("eventTime") ||
+            localStorage.getItem("eventTime") ||
+            "Time",
+
+        eventLocation:
+            params.get("eventLocation") ||
+            localStorage.getItem("eventLocation") ||
+            "Location",
+
+        eventMessage:
+            params.get("eventMessage") ||
+            localStorage.getItem("eventMessage") ||
+            "Your special message will appear here.",
+
+        selectedTemplate:
+            params.get("template") ||
+            localStorage.getItem("selectedTemplate") ||
+            "floral"
+
+    };
+
+}
 
 
-    document.getElementById(
-        "finalTime"
-    ).textContent =
-        eventTime || "Time";
+// =====================================================
+// SHOW FINAL INVITATION
+// =====================================================
+
+if (finalCard) {
+
+    const data =
+        getInvitationData();
 
 
-    document.getElementById(
-        "finalLocation"
-    ).textContent =
-        eventLocation || "Location";
+    const previewTitle =
+        document.getElementById(
+            "previewTitle"
+        );
+
+    const previewHost =
+        document.getElementById(
+            "previewHost"
+        );
+
+    const previewDate =
+        document.getElementById(
+            "previewDate"
+        );
+
+    const previewTime =
+        document.getElementById(
+            "previewTime"
+        );
+
+    const previewLocation =
+        document.getElementById(
+            "previewLocation"
+        );
+
+    const previewMessage =
+        document.getElementById(
+            "previewMessage"
+        );
+
+    const previewIcon =
+        document.getElementById(
+            "previewIcon"
+        );
 
 
-    document.getElementById(
-        "finalMessage"
-    ).textContent =
-        eventMessage ||
-        "Your special message will appear here.";
+    if (previewTitle) {
+
+        previewTitle.textContent =
+            data.eventTitle;
+
+    }
 
 
-    // =========================
-    // EVENT ICON
-    // =========================
+    if (previewHost) {
+
+        previewHost.textContent =
+            data.hostName;
+
+    }
+
+
+    if (previewDate) {
+
+        previewDate.textContent =
+            data.eventDate;
+
+    }
+
+
+    if (previewTime) {
+
+        previewTime.textContent =
+            data.eventTime;
+
+    }
+
+
+    if (previewLocation) {
+
+        previewLocation.textContent =
+            data.eventLocation;
+
+    }
+
+
+    if (previewMessage) {
+
+        previewMessage.textContent =
+            data.eventMessage;
+
+    }
+
 
     const icons = {
 
         Birthday: "🎂",
-
         Wedding: "💍",
-
         Graduation: "🎓",
-
         Anniversary: "💐",
-
         Party: "🎉",
-
         "Baby Shower": "👶"
 
     };
 
 
-    document.getElementById(
-        "finalIcon"
-    ).textContent =
-        icons[eventType] || "🎉";
+    if (previewIcon) {
 
-
-    // =========================
-    // PHOTO
-    // =========================
-
-    const savedPhoto =
-        localStorage.getItem(
-            "invitationPhoto"
-        );
-
-
-    const finalPhoto =
-        document.getElementById(
-            "finalPhoto"
-        );
-
-
-    if (savedPhoto) {
-
-        finalPhoto.src =
-            savedPhoto;
-
-        finalPhoto.style.display =
-            "block";
+        previewIcon.textContent =
+            icons[data.eventType] || "🎉";
 
     }
 
 
-    // =========================
-    // BACKGROUND
-    // =========================
-
-    const savedBackground =
-        localStorage.getItem(
-            "backgroundColor"
-        );
+    finalCard.classList.add(
+        data.selectedTemplate
+    );
 
 
-    if (savedBackground) {
+    // =================================================
+    // IF SHARED LINK
+    // =================================================
 
-        finalInvitation.style.backgroundColor =
-            savedBackground;
+    if (window.location.search) {
 
-    }
+        const backButton =
+            document.getElementById(
+                "backButton"
+            );
 
+        const shareButton =
+            document.getElementById(
+                "shareButton"
+            );
 
-    // =========================
-    // TEXT COLOR
-    // =========================
+        if (backButton) {
 
-    const savedTextColor =
-        localStorage.getItem(
-            "textColor"
-        );
+            backButton.style.display =
+                "none";
 
+        }
 
-    if (savedTextColor) {
+        if (shareButton) {
 
-        finalInvitation.style.color =
-            savedTextColor;
+            shareButton.style.display =
+                "none";
 
-    }
-
-
-    // =========================
-    // FONT SIZE
-    // =========================
-
-    const savedFontSize =
-        localStorage.getItem(
-            "fontSize"
-        );
-
-
-    if (savedFontSize) {
-
-        document.getElementById(
-            "finalTitle"
-        ).style.fontSize =
-            savedFontSize + "px";
+        }
 
     }
 
 }
 
 
-// =========================
-// BACK TO CUSTOMIZE
-// =========================
+// =====================================================
+// BACK FROM PREVIEW
+// =====================================================
 
 function backToCustomize() {
 
@@ -1321,102 +1472,126 @@ function backToCustomize() {
 }
 
 
-// =========================
-// GO TO SHARE
-// =========================
+// =====================================================
+// SHARE INVITATION
+// =====================================================
 
-function goToShare() {
+function shareInvitation() {
 
-    window.location.href =
-        "share.html";
+    const eventType =
+        localStorage.getItem(
+            "eventType"
+        ) || "";
 
-}// =========================
-// SHARE PAGE
-// =========================
+    const eventTitle =
+        localStorage.getItem(
+            "eventTitle"
+        ) || "";
 
-const shareLink =
-    document.getElementById("shareLink");
+    const hostName =
+        localStorage.getItem(
+            "hostName"
+        ) || "";
+
+    const eventDate =
+        localStorage.getItem(
+            "eventDate"
+        ) || "";
+
+    const eventTime =
+        localStorage.getItem(
+            "eventTime"
+        ) || "";
+
+    const eventLocation =
+        localStorage.getItem(
+            "eventLocation"
+        ) || "";
+
+    const eventMessage =
+        localStorage.getItem(
+            "eventMessage"
+        ) || "";
+
+    const selectedTemplate =
+        localStorage.getItem(
+            "selectedTemplate"
+        ) || "floral";
 
 
-if (shareLink) {
+    // =================================================
+    // CREATE SHARE URL
+    // =================================================
 
-    /*
-       Create a link for the current invitation.
-       For now, this uses the current website address.
-    */
-
-    const invitationLink =
-        window.location.origin +
-        window.location.pathname.replace(
-            "share.html",
-            "preview.html"
+    const shareURL =
+        new URL(
+            "preview.html",
+            window.location.href
         );
 
-    shareLink.value =
-        invitationLink;
 
-}
+    shareURL.searchParams.set(
+        "eventType",
+        eventType
+    );
+
+    shareURL.searchParams.set(
+        "eventTitle",
+        eventTitle
+    );
+
+    shareURL.searchParams.set(
+        "hostName",
+        hostName
+    );
+
+    shareURL.searchParams.set(
+        "eventDate",
+        eventDate
+    );
+
+    shareURL.searchParams.set(
+        "eventTime",
+        eventTime
+    );
+
+    shareURL.searchParams.set(
+        "eventLocation",
+        eventLocation
+    );
+
+    shareURL.searchParams.set(
+        "eventMessage",
+        eventMessage
+    );
+
+    shareURL.searchParams.set(
+        "template",
+        selectedTemplate
+    );
 
 
-// =========================
-// COPY INVITATION LINK
-// =========================
-
-function copyInvitationLink() {
-
-    const link =
-        document.getElementById(
-            "shareLink"
-        );
-
-    const message =
-        document.getElementById(
-            "copyMessage"
-        );
-
+    // =================================================
+    // COPY LINK
+    // =================================================
 
     navigator.clipboard.writeText(
-        link.value
+        shareURL.href
     )
-    .then(function() {
+    .then(function () {
 
-        message.textContent =
-            "✅ Invitation link copied!";
+        alert(
+            "Invitation link copied! 🔗"
+        );
 
     })
-    .catch(function() {
+    .catch(function () {
 
-        link.select();
-
-        document.execCommand("copy");
-
-        message.textContent =
-            "✅ Invitation link copied!";
+        prompt(
+            "Copy your invitation link:",
+            shareURL.href
+        );
 
     });
-
-}
-
-
-// =========================
-// BACK TO PREVIEW
-// =========================
-
-function backToPreview() {
-
-    window.location.href =
-        "preview.html";
-
-}
-
-
-// =========================
-// GO HOME
-// =========================
-
-function goHome() {
-
-    window.location.href =
-        "index.html";
 
 }
