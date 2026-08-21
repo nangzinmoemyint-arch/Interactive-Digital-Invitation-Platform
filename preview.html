@@ -166,31 +166,57 @@
         <!-- =========================
              BUTTONS
         ========================== -->
+<div class="final-buttons">
 
-        <div class="final-buttons">
+    <button
+        class="back-btn"
+        onclick="backToCustomize()">
 
+        ← Back
 
-            <button
-                class="back-btn"
-                onclick="backToCustomize()">
-
-                ← Back
-
-            </button>
+    </button>
 
 
-            <button
-                class="share-btn"
-                onclick="shareInvitation()">
+    <button
+        class="share-btn"
+        onclick="shareInvitation()">
 
-                🔗 Share Invitation
+        🔗 Share Invitation
 
-            </button>
+    </button>
+
+</div>
 
 
-        </div>
+<!-- =========================
+     SHARE LINK
+========================= -->
 
+<div
+    id="shareLinkBox"
+    style="display: none; margin-top: 20px;">
 
+    <p>
+        🔗 <strong>Your Invitation Link</strong>
+    </p>
+
+    <input
+        type="text"
+        id="shareLinkInput"
+        readonly
+        style="width: 100%; padding: 10px;">
+
+    <button
+        type="button"
+        onclick="copyInvitationLink()"
+        style="margin-top: 10px; padding: 10px 20px;">
+
+        📋 Copy Link
+
+    </button>
+
+</div>
+       
     </section>
 
 
