@@ -1471,12 +1471,11 @@ function backToCustomize() {
 
 }
 
-
 // =====================================================
 // SHARE INVITATION
 // =====================================================
 
-        function shareInvitation() {
+function shareInvitation() {
 
     const eventType =
         localStorage.getItem("eventType") || "";
@@ -1517,152 +1516,53 @@ function backToCustomize() {
         );
 
 
-    shareURL.searchParams.set(
-        "eventType",
-        eventType
-    );
-
-    shareURL.searchParams.set(
-        "eventTitle",
-        eventTitle
-    );
-
-    shareURL.searchParams.set(
-        "hostName",
-        hostName
-    );
-
-    shareURL.searchParams.set(
-        "eventDate",
-        eventDate
-    );
-
-    shareURL.searchParams.set(
-        "eventTime",
-        eventTime
-    );
-
-    shareURL.searchParams.set(
-        "eventLocation",
-        eventLocation
-    );
-
-    shareURL.searchParams.set(
-        "eventMessage",
-        eventMessage
-    );
-
-    shareURL.searchParams.set(
-        "template",
-        selectedTemplate
-    );
-
-    shareURL.searchParams.set(
-        "photo",
-        photo
-    );
+    shareURL.searchParams.set("eventType", eventType);
+    shareURL.searchParams.set("eventTitle", eventTitle);
+    shareURL.searchParams.set("hostName", hostName);
+    shareURL.searchParams.set("eventDate", eventDate);
+    shareURL.searchParams.set("eventTime", eventTime);
+    shareURL.searchParams.set("eventLocation", eventLocation);
+    shareURL.searchParams.set("eventMessage", eventMessage);
+    shareURL.searchParams.set("template", selectedTemplate);
+    shareURL.searchParams.set("photo", photo);
 
 
     // COPY LINK
 
-    navigator.clipboard.writeText(
-        shareURL.href
-    )
-    .then(function () {
+    navigator.clipboard.writeText(shareURL.href)
+        .then(function () {
 
-        alert(
-            "Invitation link copied! 🔗"
-        );
+            alert("Invitation link copied! 🔗");
 
-    })
-    .catch(function () {
+        })
+        .catch(function () {
 
-        prompt(
-            "Copy your invitation link:",
-            shareURL.href
-        );
+            prompt(
+                "Copy your invitation link:",
+                shareURL.href
+            );
 
-    });
-
-} 
-
-
-    // =================================================
-    // CREATE SHARE URL
-    // =================================================
-
-    const shareURL =
-        new URL(
-            "preview.html",
-            window.location.href
-        );
-
-
-    shareURL.searchParams.set(
-        "eventType",
-        eventType
-    );
-
-    shareURL.searchParams.set(
-        "eventTitle",
-        eventTitle
-    );
-
-    shareURL.searchParams.set(
-        "hostName",
-        hostName
-    );
-
-    shareURL.searchParams.set(
-        "eventDate",
-        eventDate
-    );
-
-    shareURL.searchParams.set(
-        "eventTime",
-        eventTime
-    );
-
-    shareURL.searchParams.set(
-        "eventLocation",
-        eventLocation
-    );
-
-    shareURL.searchParams.set(
-        "eventMessage",
-        eventMessage
-    );
-
-    shareURL.searchParams.set(
-        "template",
-        selectedTemplate
-    );
-
-
-    // =================================================
-    // COPY LINK
-    // =================================================
-
-    navigator.clipboard.writeText(
-        shareURL.href
-    )
-    .then(function () {
-
-        alert(
-            "Invitation link copied! 🔗"
-        );
-
-    })
-    .catch(function () {
-
-        prompt(
-            "Copy your invitation link:",
-            shareURL.href
-        );
-
-    });
+        });
 
 }
+
+
+// =====================================================
+// CUSTOMIZE PAGE NAVIGATION
+// =====================================================
+
+function goToPreview() {
+
+    window.location.href = "preview.html";
+
+}
+
+function backToTemplate() {
+
+    window.location.href = "template.html";
+
+}
+
 // =========================
 // CUSTOMIZE PAGE NAVIGATION
 // =========================
