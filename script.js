@@ -1430,42 +1430,51 @@ if (finalCard) {
         data.selectedTemplate
     );
 
-// =================================================
-// LOAD CUSTOMIZATION
-// =================================================
 
-const savedBackground =
-    localStorage.getItem("backgroundColor");
+    // =================================================
+    // CUSTOMIZATION
+    // =================================================
 
-const savedTextColor =
-    localStorage.getItem("textColor");
+    const savedBackground =
+        localStorage.getItem("backgroundColor");
 
-const savedFontSize =
-    localStorage.getItem("fontSize");
+    const savedTextColor =
+        localStorage.getItem("textColor");
 
-
-if (savedBackground) {
-
-    finalCard.style.backgroundColor =
-        savedBackground;
-
-}
+    const savedFontSize =
+        localStorage.getItem("fontSize");
 
 
-if (savedTextColor) {
+    // BACKGROUND COLOR
 
-    finalCard.style.color =
-        savedTextColor;
+    if (savedBackground) {
 
-}
+        finalCard.style.backgroundColor =
+            savedBackground;
+
+    }
 
 
-if (savedFontSize && finalTitle) {
+    // TEXT COLOR
 
-    finalTitle.style.fontSize =
-        savedFontSize + "px";
+    if (savedTextColor) {
 
-}
+        finalCard.style.color =
+            savedTextColor;
+
+    }
+
+
+    // TITLE SIZE
+
+    if (savedFontSize && finalTitle) {
+
+        finalTitle.style.fontSize =
+            savedFontSize + "px";
+
+    }
+
+
     // PHOTO
 
     if (data.photo && finalPhoto) {
@@ -1512,7 +1521,6 @@ if (savedFontSize && finalTitle) {
     }
 
 }
-
 
 // =====================================================
 // BACK FROM PREVIEW
