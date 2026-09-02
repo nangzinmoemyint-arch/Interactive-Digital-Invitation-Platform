@@ -1726,15 +1726,51 @@ if (backgroundColor) {
 }
 
 if (textColor) {
+
     guestInvitation.style.color =
         textColor;
+
+    if (guestTitle) {
+        guestTitle.style.color =
+            textColor;
+    }
+
+    if (guestHost) {
+        guestHost.style.color =
+            textColor;
+    }
+
+    if (guestDate) {
+        guestDate.style.color =
+            textColor;
+    }
+
+    if (guestTime) {
+        guestTime.style.color =
+            textColor;
+    }
+
+    if (guestLocation) {
+        guestLocation.style.color =
+            textColor;
+    }
+
+    if (guestMessage) {
+        guestMessage.style.color =
+            textColor;
+    }
+
+    if (guestIcon) {
+        guestIcon.style.color =
+            textColor;
+    }
+
 }
-    
+
 if (fontSize && guestTitle) {
     guestTitle.style.fontSize =
         fontSize + "px";
 }
-
     
 
 }
