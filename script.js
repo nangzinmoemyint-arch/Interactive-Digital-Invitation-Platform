@@ -1222,10 +1222,7 @@ function getInvitationData() {
             localStorage.getItem("selectedTemplate") ||
             "floral",
 
-        photo:
-            params.get("photo") ||
-            localStorage.getItem("invitationPhoto") ||
-            ""
+        
 
     };
 
@@ -1400,17 +1397,7 @@ if (finalCard) {
     }
 
 
-    // PHOTO
-
-    if (data.photo && finalPhoto) {
-
-        finalPhoto.src =
-            data.photo;
-
-        finalPhoto.style.display =
-            "block";
-
-    }
+    
 
 
     // SHARED LINK
@@ -1511,7 +1498,19 @@ function shareInvitation() {
         localStorage.getItem("selectedTemplate") ||
         "floral"
     );
+    shareURL.searchParams.set(
+    "backgroundColor",
+    localStorage.getItem("backgroundColor") || ""
+);
 
+shareURL.searchParams.set(
+    "textColor",
+    localStorage.getItem("textColor") || ""
+);
+shareURL.searchParams.set(
+    "fontSize",
+    localStorage.getItem("fontSize") || ""
+);
 
     // Show the link on the page
 
@@ -1638,9 +1637,14 @@ if (guestInvitation) {
 
     const selectedTemplate =
         params.get("template") || "floral";
+    const backgroundColor =
+    params.get("backgroundColor") || "";
 
-    const photo =
-        params.get("photo") || "";
+const textColor =
+    params.get("textColor") || "";
+
+   const fontSize =
+    params.get("fontSize") || "";
 
 
     // SHOW INFORMATION
@@ -1714,23 +1718,23 @@ if (guestInvitation) {
     guestInvitation.classList.add(
         selectedTemplate
     );
+    // CUSTOMIZATION
 
+if (backgroundColor) {
+    guestInvitation.style.backgroundColor =
+        backgroundColor;
+}
 
-    // PHOTO
+if (textColor) {
+    guestInvitation.style.color =
+        textColor;
+}
+    
+if (fontSize && guestTitle) {
+    guestTitle.style.fontSize =
+        fontSize + "px";
+}
 
-    if (photo) {
-
-        const guestPhoto =
-            document.getElementById("guestPhoto");
-
-        if (guestPhoto) {
-
-            guestPhoto.src = photo;
-
-            guestPhoto.style.display = "block";
-
-        }
-
-    }
+    
 
 }
