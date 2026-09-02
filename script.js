@@ -1430,7 +1430,42 @@ if (finalCard) {
         data.selectedTemplate
     );
 
+// =================================================
+// LOAD CUSTOMIZATION
+// =================================================
 
+const savedBackground =
+    localStorage.getItem("backgroundColor");
+
+const savedTextColor =
+    localStorage.getItem("textColor");
+
+const savedFontSize =
+    localStorage.getItem("fontSize");
+
+
+if (savedBackground) {
+
+    finalCard.style.backgroundColor =
+        savedBackground;
+
+}
+
+
+if (savedTextColor) {
+
+    finalCard.style.color =
+        savedTextColor;
+
+}
+
+
+if (savedFontSize && finalTitle) {
+
+    finalTitle.style.fontSize =
+        savedFontSize + "px";
+
+}
     // PHOTO
 
     if (data.photo && finalPhoto) {
