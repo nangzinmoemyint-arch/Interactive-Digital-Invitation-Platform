@@ -554,6 +554,15 @@ if (
 
         input.placeholder =
             field.placeholder || "";
+        // Prevent past dates
+if (field.type === "date") {
+
+    const today =
+        new Date().toISOString().split("T")[0];
+
+    input.min = today;
+
+}
 
 
         group.appendChild(label);
