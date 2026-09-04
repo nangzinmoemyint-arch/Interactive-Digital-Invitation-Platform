@@ -598,20 +598,45 @@ function saveEventInformation() {
 
     inputs.forEach(function (input) {
 
-        if (input.value.trim() === "") {
+    // Check empty fields
+    if (input.value.trim() === "") {
+
+        allFilled = false;
+
+        input.style.border =
+            "2px solid #e74c3c";
+
+        return;
+    }
+
+
+    // Check date
+    if (input.type === "date") {
+
+        const today =
+            new Date().toISOString().split("T")[0];
+
+        if (input.value < today) {
 
             allFilled = false;
 
             input.style.border =
                 "2px solid #e74c3c";
 
-        } else {
+            alert(
+                "Please select today or a future date! 📅"
+            );
 
-            input.style.border = "";
+            return;
 
         }
 
-    });
+    }
+
+
+    input.style.border = "";
+
+});
 
 
     if (!allFilled) {
