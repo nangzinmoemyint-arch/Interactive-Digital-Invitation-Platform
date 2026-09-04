@@ -547,20 +547,36 @@ if (
 
 
         input.id =
-            field.id;
+    field.id;
 
-        input.name =
-            field.id;
+input.name =
+    field.id;
 
-        input.placeholder =
-            field.placeholder || "";
-        // Prevent past dates
+input.placeholder =
+    field.placeholder || "";
+
+
+// DATE VALIDATION
 if (field.type === "date") {
 
-    const today =
-        new Date().toISOString().split("T")[0];
+    const today = new Date();
 
-    input.min = today;
+    const year =
+        today.getFullYear();
+
+    const month =
+        String(today.getMonth() + 1).padStart(2, "0");
+
+    const day =
+        String(today.getDate()).padStart(2, "0");
+
+    const todayDate =
+        year + "-" + month + "-" + day;
+
+    input.setAttribute(
+        "min",
+        todayDate
+    );
 
 }
 
@@ -596,9 +612,8 @@ function saveEventInformation() {
     let allFilled = true;
 
 
-    inputs.forEach(function (input) {
+   inputs.forEach(function (input) {
 
-    // Check empty fields
     if (input.value.trim() === "") {
 
         allFilled = false;
@@ -607,25 +622,33 @@ function saveEventInformation() {
             "2px solid #e74c3c";
 
         return;
+
     }
 
 
-    // Check date
     if (input.type === "date") {
 
-        const today =
-            new Date().toISOString().split("T")[0];
+        const today = new Date();
 
-        if (input.value < today) {
+        const year =
+            today.getFullYear();
+
+        const month =
+            String(today.getMonth() + 1).padStart(2, "0");
+
+        const day =
+            String(today.getDate()).padStart(2, "0");
+
+        const todayDate =
+            year + "-" + month + "-" + day;
+
+
+        if (input.value < todayDate) {
 
             allFilled = false;
 
             input.style.border =
                 "2px solid #e74c3c";
-
-            alert(
-                "Please select today or a future date! 📅"
-            );
 
             return;
 
@@ -638,16 +661,53 @@ function saveEventInformation() {
 
 });
 
-
     if (!allFilled) {
 
-        alert(
-            "Please fill in all the information! ⚠️"
+    const dateInput =
+        formContainer.querySelector(
+            'input[type="date"]'
         );
 
-        return;
+    if (
+        dateInput &&
+        dateInput.value
+    ) {
+
+        const today = new Date();
+
+        const year =
+            today.getFullYear();
+
+        const month =
+            String(today.getMonth() + 1).padStart(2, "0");
+
+        const day =
+            String(today.getDate()).padStart(2, "0");
+
+        const todayDate =
+            year + "-" + month + "-" + day;
+
+
+        if (dateInput.value < todayDate) {
+
+            alert(
+                "Please select today or a future date! 📅"
+            );
+
+            return;
+
+        }
 
     }
+
+
+    alert(
+        "Please fill in all the information! ⚠️"
+    );
+
+    return;
+
+}
 
 
     inputs.forEach(function (input) {
